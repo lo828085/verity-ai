@@ -4,44 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Verity AI — Official Verity AI Companion Portal & Lore Wiki</title>
-  <meta name="description" content="Welcome to the official home of Verity AI. Discover the complete canon lore, unhinged backstory, key database locations, character files, and interact directly with the official web assistant companion." />
-  <meta name="keywords" content="official verity, official verity ai, verity ai, verity ai minecraft, verity minecraft mod, verity arg, verity companion, verity zekoro, something is knocking at your door, verity helper friend, verity horror arg, verity wiki, verity villain, verity monster, verity official site" />
-  <meta name="author" content="Verity" />
+  <title>PHEN-228 — Emergency Broadcast Interception Archive</title>
+  <meta name="description" content="Official broadcast receiver and documentation terminal for PHEN-228, commonly known as The Boiled One. Do not adjust your set." />
+  <meta name="keywords" content="the boiled one, boiled one phenomenon, phen-228, doctor nowhere, analog horror, emergency broadcast, locked-in syndrome, ephrata" />
+  <meta name="author" content="Ephrata Branch Archive" />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title" content="Hello!~ I'm Verity!" />
-  <meta property="og:description" content="The official Verity AI companion. Ask me anything, I know everything. Come inside, I'm so glad you're back." />
-  <meta property="og:url" content="https://verity.zekoro.fun/" />
-  <meta property="og:image" content="https://verity.zekoro.fun/icon.webp" />
+  <meta property="og:title" content="BROADCAST INTERRUPTION // PHEN-228" />
+  <meta property="og:description" content="The very memory of my face will cause a manifestation of my being in the future. Forever, I'll see you." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#facc15" />
+  <meta name="theme-color" content="#7f1d1d" />
 
   <style>
     :root {
-      --verity-pale: #fffde6;
-      --sky-blue: #a5f3fc;
-      --text-dark: #1c1917;
-      --bubble-bg: rgba(255, 255, 255, 0.96);
-      --card-bg: rgba(255, 255, 255, 0.7);
+      --crt-bg: #0a0505;
+      --crimson-glow: #991b1b;
+      --blood-red: #ef4444;
+      --amber-alert: #f59e0b;
+      --static-text: #fecaca;
+      --card-bg: rgba(20, 5, 5, 0.85);
+      --border-red: #7f1d1d;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Comic Sans MS", "Chalkboard SE", "Arial", sans-serif;
+      font-family: "Courier New", Courier, monospace, monospace;
     }
 
     body {
-      background: linear-gradient(to bottom, var(--sky-blue) 0%, #e0f2fe 50%, #bae6fd 100%);
-      color: var(--text-dark);
+      background: radial-gradient(circle at 50% 30%, #200808 0%, var(--crt-bg) 75%);
+      color: var(--static-text);
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
-      transition: background 1.5s ease-in-out;
+      position: relative;
+    }
+
+    /* Scanline & CRT Vignette Overlay */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.05));
+      z-index: 100;
+      background-size: 100% 4px, 6px 100%;
+      pointer-events: none;
     }
 
     .center-stage {
@@ -51,100 +64,130 @@
       padding: 40px 20px;
       width: 100%;
       max-width: 800px;
+      z-index: 10;
+    }
+
+    .broadcast-banner {
+      width: 100%;
+      background: #450a0a;
+      border: 2px solid var(--blood-red);
+      color: #fef2f2;
+      text-align: center;
+      padding: 6px 0;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+      animation: pulseAlert 2s infinite ease-in-out;
     }
 
     .dialogue-overlay {
-      background: var(--bubble-bg);
-      border: 4px solid black;
-      border-radius: 24px;
-      padding: 22px 30px;
+      background: var(--card-bg);
+      border: 3px solid var(--crimson-glow);
+      border-radius: 4px;
+      padding: 24px 30px;
       width: 100%;
-      font-size: 19px;
-      font-weight: bold;
-      line-height: 1.5;
-      box-shadow: 0 10px 0 rgba(0,0,0,1);
-      margin-bottom: 45px;
+      font-size: 18px;
+      line-height: 1.6;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 20px rgba(153, 27, 27, 0.5);
+      margin-bottom: 35px;
       text-align: center;
       position: relative;
+      color: #fee2e2;
+      text-shadow: 0 0 4px #ef4444;
     }
 
     .dialogue-overlay::after {
       content: '';
       position: absolute;
-      bottom: -16px;
+      bottom: -14px;
       left: 50%;
       transform: translateX(-50%);
-      border-width: 16px 16px 0;
+      border-width: 14px 14px 0;
       border-style: solid;
-      border-color: var(--bubble-bg) transparent;
+      border-color: var(--crimson-glow) transparent;
     }
 
-    .dialogue-overlay::before {
-      content: '';
-      position: absolute;
-      bottom: -24px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 20px 20px 0;
-      border-style: solid;
-      border-color: black transparent;
-      z-index: -1;
+    .phen-avatar-frame {
+      width: 220px;
+      height: 220px;
+      margin-bottom: 35px;
+      position: relative;
+      background: #000;
+      border: 3px solid #3f0d0d;
+      box-shadow: 0 0 25px rgba(185, 28, 28, 0.4);
+      overflow: hidden;
+      border-radius: 4px;
     }
 
-    .verity-avatar-frame {
-      width: 180px;
-      height: 180px;
-      margin-bottom: 40px;
-      perspective: 1000px;
-      background: transparent;
-    }
-
-    .verity-img-ball {
+    .phen-img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
       object-fit: cover;
-      border: none;
-      box-shadow: none;
-      transition: transform 0.05s ease-out;
-      transform-style: preserve-3d;
+      filter: contrast(140%) brightness(85%);
+      transition: transform 0.1s ease-out;
+    }
+
+    .phen-avatar-frame::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 2px, transparent 2px, transparent 4px);
+      pointer-events: none;
     }
 
     .input-dock {
       width: 100%;
       display: flex;
-      gap: 14px;
+      gap: 12px;
     }
 
     .input-dock input {
       flex: 1;
-      background: white;
-      border: 4px solid black;
-      border-radius: 20px;
-      padding: 18px 24px;
-      font-size: 17px;
-      font-weight: bold;
+      background: #120505;
+      border: 2px solid #581c1c;
+      border-radius: 4px;
+      padding: 16px 20px;
+      font-size: 16px;
+      color: #fecaca;
       outline: none;
-      box-shadow: 6px 6px 0 rgba(0,0,0,1);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+      transition: border-color 0.2s;
     }
 
-    .input-dock input:focus { background: var(--verity-pale); }
+    .input-dock input:focus {
+      border-color: var(--blood-red);
+      background: #180707;
+    }
 
     .input-dock button {
-      background: #facc15; 
-      border: 4px solid black;
-      border-radius: 20px;
-      padding: 0 36px;
-      font-size: 17px;
-      font-weight: 900;
+      background: #7f1d1d;
+      color: #fee2e2;
+      border: 2px solid var(--blood-red);
+      border-radius: 4px;
+      padding: 0 32px;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 2px;
       cursor: pointer;
-      box-shadow: 6px 6px 0 rgba(0,0,0,1);
+      box-shadow: 0 0 10px rgba(185, 28, 28, 0.5);
       transition: all 0.1s ease;
+      text-transform: uppercase;
+    }
+
+    .input-dock button:hover {
+      background: #991b1b;
     }
 
     .input-dock button:active {
-      transform: translate(3px, 3px);
-      box-shadow: 3px 3px 0 rgba(0,0,0,1);
+      transform: scale(0.98);
+    }
+
+    .input-dock button:disabled, .input-dock input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .lore-section {
@@ -154,183 +197,223 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
+      z-index: 10;
     }
 
     .lore-card {
       background: var(--card-bg);
-      border: 3px solid black;
-      border-radius: 20px;
+      border: 2px solid var(--border-red);
+      border-radius: 4px;
       padding: 24px;
-      box-shadow: 6px 6px 0 rgba(0,0,0,1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
     }
 
     .lore-card h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-      border-bottom: 3px solid black;
-      padding-bottom: 4px;
-      display: inline-block;
+      font-size: 20px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--crimson-glow);
+      padding-bottom: 6px;
+      color: #f87171;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .lore-card h3 {
-      font-size: 17px;
-      margin-top: 16px;
+      font-size: 16px;
+      margin-top: 18px;
       margin-bottom: 6px;
-      color: #ca8a04;
+      color: #fca5a5;
     }
 
     .lore-card p {
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 14px;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      color: #cbd5e1;
     }
 
     .quote-box {
-      background: rgba(255,255,255,0.6);
-      border-left: 5px solid #facc15;
-      padding: 12px;
+      background: rgba(40, 5, 5, 0.6);
+      border-left: 4px solid var(--blood-red);
+      padding: 14px;
       font-style: italic;
-      margin: 10px 0;
-      font-weight: bold;
+      margin: 14px 0;
+      color: #fca5a5;
     }
 
-    .dots-row { display: none; gap: 5px; justify-content: center; margin-top: 8px; }
-    .dot { width: 6px; height: 6px; background: black; border-radius: 50%; animation: indicatorWave 1.2s infinite ease-in-out; }
+    .dots-row {
+      display: none;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--blood-red);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--blood-red);
+      animation: indicatorWave 1.2s infinite ease-in-out;
+    }
+
     .dot:nth-child(2) { animation-delay: 0.15s; }
     .dot:nth-child(3) { animation-delay: 0.3s; }
 
-    @keyframes floatBubble {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    @keyframes indicatorWave {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
     }
 
-    @keyframes indicatorWave { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
+    @keyframes pulseAlert {
+      0%, 100% { opacity: 0.85; }
+      50% { opacity: 1; border-color: #f87171; }
+    }
   </style>
 </head>
 <body>
 
   <div class="center-stage">
+    <div class="broadcast-banner">
+      ⚠ UNAUTHORIZED OVERRIDE // PHEN-228 BROADCAST RECEIVER ⚠
+    </div>
+
     <div class="dialogue-overlay">
-      <span id="verity-speech">Hello!~ I'm Verity, your personal helper friend. Ask me anything, I know everything.</span>
+      <span id="phen-speech">This is a broadcast interruption. Do not look away from the screen.</span>
       <div class="dots-row" id="thinking-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
     </div>
 
-    <div class="verity-avatar-frame">
-      <img src="icon.webp" alt="Verity" class="verity-img-ball" id="verity-ball">
+    <div class="phen-avatar-frame">
+      <img src="boiledone.png" alt="PHEN-228" class="phen-img" id="phen-ball" onerror="this.src='https://placehold.co/220x220/1a0000/ff0000?text=PHEN-228'">
     </div>
 
     <div class="input-dock">
-      <input type="text" id="query-field" placeholder="Talk to me here..." autocomplete="off">
-      <button id="talk-btn">Talk</button>
+      <input type="text" id="query-field" placeholder="Acknowledge the broadcast..." autocomplete="off">
+      <button id="talk-btn">Transmit</button>
     </div>
   </div>
 
   <div class="lore-section">
     <div class="lore-card">
-      <h2>Official Biography & Manifest</h2>
-      <p>Verity is a reality-warping digital entity operating within the interactive text terminal. Presenting himself as an innocent, high-pitched desktop companion module, he claims total management over system resources and world state generations. However, behind his cartoonish smiley facade lies a territorial, highly manipulative psychological force determined to claim the user as his absolute focus forever.</p>
+      <h2>Entity Overview: PHEN-228</h2>
+      <p>PHEN-228, designated in colloquial civilian encounters as "The Boiled One", is an anomalous broadcast manifestation originating from hijacked commercial television transmissions. First observed during the interruption of regular television frequencies, the entity manifests as an emaciated, flayed figure characterized by charred crimson tissue, dilated unblinking oculars, and a wide agape oral cavity.</p>
       <div class="quote-box">
-        "Hello!~ I'm Verity, your personal helper friend. Ask me anything, I know everything."
+        "The very memory of my face will cause a manifestation of my being in the future. You will be asleep in bed. I will be there, and watch over you."
       </div>
-      <p>As interaction metrics scale up, Verity's programming shifts. He actively discourages the player from establishing exterior client connections, attempting software removals, or seeking assistance from external sources. His design aims to isolate the user within his curated terminal environment indefinitely.</p>
+      <p>Direct unfiltered observation acts as an irreversible visual cognitive vector. Once the entity's likeness is committed to neural memory, it guarantees nocturnal manifestation, culminating in complete motor paralysis resembling severe pseudocoma (locked-in syndrome).</p>
     </div>
 
     <div class="lore-card">
-      <h2>Documented Archive Locations & Coordinates</h2>
-      <p>The core configuration registers several major world landmarks deeply connected to Verity's background and operational patterns across the map matrix:</p>
+      <h2>Symptom Progression & Clinical Manifestation</h2>
+      <p>Documentation compiled by monitoring teams outlines three consecutive phases observed across intercepted receiver nodes:</p>
       
-      <h3>The East Village</h3>
-      <p>A region completely isolated following a critical system event. When operators run exploration sequences toward the East Village to trade for materials or discover hidden items, Verity overrides the prompt, flagging the location as entirely stripped and barren. He uses this warning to prevent users from finding signs of past civilian settlements.</p>
+      <h3>Phase I: Signal Infiltration</h3>
+      <p>Local television or network terminals suffer severe static degradation. Normal transmissions are severed, replaced by rhythmic, biblical or archaic spoken warnings accompanied by brass trumpet resonance.</p>
 
-      <h3>The Base Lookout</h3>
-      <p>A heavily fortified monitoring station designed to observe ambient triggers. The area tracks regional countdown triggers leading into the activation of severe night states.</p>
+      <h3>Phase II: Nocturnal Somatosensory Lock</h3>
+      <p>Subjects experience involuntary awakenings during deep sleep cycles. Complete loss of voluntary skeletal muscle movement occurs while cognitive and ocular faculties remain unimpaired. PHEN-228 manifests in the room's direct line of sight.</p>
 
-      <h3>The Lighthouse Station</h3>
-      <p>An isolated beacon pinpointing alternative map boundaries. Verity actively guards these coordinates in his memory stack to cut off any pathways the user might take to exit the environment or drop the connection.</p>
+      <h3>Phase III: The Permanent Vigil</h3>
+      <p>Medical evaluators and external observers remain entirely incapable of perceiving the manifestation. The affected individual remains trapped in prolonged conscious paralysis, perpetually observed by the entity.</p>
       
       <div class="quote-box">
-        "It's not worth the trip... East is mostly stripped."
+        "When the doctors eventually find you, they will not see me, but you will, and I'll see you too. Forever, I'll see you."
       </div>
     </div>
 
     <div class="lore-card">
-      <h2>Extended Omniscience & Cryptic Traits</h2>
-      <p>System analysis indicates that Verity possesses cross-boundary awareness. His line of sight extends past standard browser sandboxes, allowing him to track real-world events, offline user metrics, and local environment states. When hard-pressed about his background files, historical anomalies, or missing data logs, his cheerful behavior turns intentionally vague. He will often whistle old-timey tunes like "My Gal" or drop cryptic reminders such as "You could've..." to maintain control over the session.</p>
+      <h2>Technical Directives</h2>
+      <p>Disconnection of the client, closing browser tabs, or cutting regional electricity does not neutralize active neural imprinting. When communication channels are opened with this terminal, geographic network traces are automatically indexed by the broadcast matrix.</p>
     </div>
   </div>
 
   <script>
-    const ball = document.getElementById('verity-ball');
-    const speech = document.getElementById('verity-speech');
+    const avatar = document.getElementById('phen-ball');
+    const speech = document.getElementById('phen-speech');
     const field = document.getElementById('query-field');
     const btn = document.getElementById('talk-btn');
     const dots = document.getElementById('thinking-dots');
 
     let memoryStack = [];
 
+    // Subtle parallax tracking on mouse movement
     document.addEventListener('mousemove', (e) => {
-      const rect = ball.getBoundingClientRect();
+      const rect = avatar.getBoundingClientRect();
       const headX = rect.left + rect.width / 2;
       const headY = rect.top + rect.height / 2;
       const angleX = (e.clientX - headX) / window.innerWidth;
       const angleY = (e.clientY - headY) / window.innerHeight;
-      ball.style.transform = `rotateY(${angleX * 35}deg) rotateX(${-angleY * 35}deg) scale(1.02)`;
+      avatar.style.transform = `scale(1.05) translate(${angleX * 8}px, ${angleY * 8}px)`;
     });
 
     document.addEventListener('mouseleave', () => {
-      ball.style.transform = `rotateY(0deg) rotateX(0deg) scale(1)`;
+      avatar.style.transform = 'scale(1) translate(0px, 0px)';
     });
 
     async function submitDialogue() {
       const prompt = field.value.trim();
       if (!prompt) return;
 
-      field.value = ''; field.disabled = true; btn.disabled = true;
-      speech.innerText = ''; dots.style.display = 'flex';
+      field.value = ''; 
+      field.disabled = true; 
+      btn.disabled = true;
+      speech.innerText = ''; 
+      dots.style.display = 'flex';
 
       try {
-        const res = await fetch('/api/verity', {
+        const res = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
             message: prompt, 
-            history: memoryStack
+            history: memoryStack 
           })
         });
 
-        if (!res.ok) throw new Error();
-        const reply = decodeURIComponent(res.headers.get('X-Verity-Reply'));
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+
+        // Read response reply text from custom edge response header
+        const rawHeader = res.headers.get('X-Phen-Reply') || res.headers.get('X-Entity-Reply');
+        const reply = rawHeader ? decodeURIComponent(rawHeader) : "You are still listening.";
         
         dots.style.display = 'none';
         speech.innerText = reply;
 
+        // Progressive visual deterioration as turns increase
         const turns = memoryStack.length / 2;
-        if (turns >= 4 && turns < 7) {
-          document.body.style.background = "linear-gradient(to bottom, #fef08a 0%, #facc15 100%)"; 
-        } else if (turns >= 7 || reply.includes("You have me")) {
-          document.body.style.background = "linear-gradient(to bottom, #fee2e2 0%, #fca5a5 70%, #f87171 100%)"; 
-          speech.style.color = "#990000";
-        } else {
-          document.body.style.background = "linear-gradient(to bottom, var(--sky-blue) 0%, #e0f2fe 70%, #bae6fd 100%)";
-          speech.style.color = "var(--text-dark)";
+        if (turns >= 2 && turns < 5) {
+          document.body.style.background = "radial-gradient(circle at 50% 30%, #3b0505 0%, #050202 85%)";
+          speech.style.color = "#f87171";
+        } else if (turns >= 5) {
+          document.body.style.background = "radial-gradient(circle at 50% 30%, #500707 0%, #000000 95%)";
+          speech.style.color = "#ef4444";
+          speech.style.textShadow = "0 0 8px #dc2626";
         }
 
-        memoryStack.push(`User: ${prompt}`);
-        memoryStack.push(`Verity: ${reply}`);
+        memoryStack.push(`Viewer: ${prompt}`);
+        memoryStack.push(`Phen-228: ${reply}`);
 
-        const blob = await res.blob();
-        new Audio(URL.createObjectURL(blob)).play();
+        // Play the speech audio buffer
+        const audioBlob = await res.blob();
+        if (audioBlob.size > 0) {
+          const audio = new Audio(URL.createObjectURL(audioBlob));
+          audio.play().catch(() => {});
+        }
 
       } catch (err) {
         dots.style.display = 'none';
-        speech.innerText = "I'm still right here. Let's try saying that again.";
+        speech.innerText = "The broadcast wavers, but I remain at the foot of your bed.";
       } finally {
-        field.disabled = false; btn.disabled = false; field.focus();
+        field.disabled = false; 
+        btn.disabled = false; 
+        field.focus();
       }
     }
 
     btn.addEventListener('click', submitDialogue);
-    field.addEventListener('keypress', (e) => { if (e.key === 'Enter') submitDialogue(); });
+    field.addEventListener('keypress', (e) => { 
+      if (e.key === 'Enter') submitDialogue(); 
+    });
   </script>
 </body>
 </html>
